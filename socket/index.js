@@ -2,12 +2,14 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken")
-const axios  = require("axios");
+const axios = require("axios");
+const cors = require("cors");
 require("dotenv").config();
 
 
 
 const app = express();
+app.use(cors())
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -15,15 +17,17 @@ const io = new Server(server, {
   },
 });
 
-app.get("/",(req,res)=>{res.json("socket.io running")});
+app.get("/", (req, res) => { res.json("socket.io running") });
 
 const userMap = new Map();
 
-io.on("connection",(socket) => {
-//   console.log(`User connected with socket ID: ${socket.id}`);
+io.on("connection", (socket) => {
+  //   console.log(`User connected with socket ID: ${socket.id}`);
 
   socket.on("token", (token) => {
     const user_email = jwt.verify(token, "secret_key");
+    
+    console.log({user_email , token});
     userMap.set(user_email, socket.id);
     // console.log("User map:", Array.from(userMap.entries()));
 
@@ -33,7 +37,10 @@ io.on("connection",(socket) => {
   socket.on("msg", async (msg) => {
     const receiverID = userMap.get(msg.receiver);
     // console.log(receiverID , "receiver id" , msg.receiver);
+
+    console.log({sender: msg});
     
+
     const response = await axios.post(`${process.env.SERVER_URL}/message`, {
       sender: msg.sender,
       receiver: msg.receiver,
@@ -41,7 +48,7 @@ io.on("connection",(socket) => {
     });
     console.log(response.data);
 
-    
+
     if (receiverID) {
       socket.to(receiverID).emit("msg", msg);
     }
@@ -61,7 +68,7 @@ io.on("connection",(socket) => {
   });
 });
 
-server.listen(8081,()=>{
-    console.log("socket is connected");
+server.listen(8081, () => {
+  console.log("socket is connected");
 })
 
