@@ -6,6 +6,7 @@ const axios  = require("axios");
 require("dotenv").config();
 
 
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -14,7 +15,7 @@ const io = new Server(server, {
   },
 });
 
-
+app.get("/",(req,res)=>{res.json("socket.io running")});
 
 const userMap = new Map();
 
