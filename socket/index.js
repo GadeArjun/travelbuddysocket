@@ -1,12 +1,13 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
-const app = express();
 const jwt = require("jsonwebtoken")
-const server = http.createServer(app);
-const {saveMessage} = require("../server/controllers/messages")
-const {Message} = require("../server/models/messages")
+const axios  = require("axios");
+require("dotenv").config();
 
+
+const app = express();
+const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -32,7 +33,13 @@ io.on("connection",(socket) => {
     const receiverID = userMap.get(msg.receiver);
     // console.log(receiverID , "receiver id" , msg.receiver);
     
-    await saveMessage(msg.sender, msg.receiver, msg.msg);
+    const response = await axios.post(`${process.env.SERVER_URL}/message`, {
+      sender: msg.sender,
+      receiver: msg.receiver,
+      message: msg.msg,
+    });
+    console.log(response.data);
+
     
     if (receiverID) {
       socket.to(receiverID).emit("msg", msg);
