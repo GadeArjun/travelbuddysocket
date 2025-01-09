@@ -53,15 +53,13 @@ function Chats() {
 
   useEffect(() => {
     try {
-      setSocket(io(`${process.env.REACT_APP_BACKEND_URL}`));
+      setSocket(io("https://fuzzy-telegram-5gqvvqvgxxg6347w9-8081.app.github.dev"));
     } catch (error) {
       console.log({ error });
     }
 
-    return () => {
-      socket?.close();
-    };
-  }, [socket]);
+   
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("travel_buddy_token");

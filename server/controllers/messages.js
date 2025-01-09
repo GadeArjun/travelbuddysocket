@@ -1,6 +1,7 @@
 const { Message } = require("../models/messages");
 
 exports.saveMessage = async (sender, receiver, messageContent) => {
+  
   try {
     const newMessage = new Message({
       sender,
