@@ -10,16 +10,22 @@ const jwt = require("jsonwebtoken");
 const { saveMessage } = require("./controllers/messages");
 const { messagesRouter } = require("./routes/messages");
 const { tripRouter } = require("./routes/userTripData");
-const {feedbackRouter} = require("./routes/userFeedback")
+const {feedbackRouter} = require("./routes/userFeedback");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "public", "build")));
+
 app.get("/auth", userAuthentication);
 app.use(router);
 app.use(messagesRouter);
 app.use(tripRouter);
 app.use(feedbackRouter);
+
+
 
 const server = http.createServer(app);
 

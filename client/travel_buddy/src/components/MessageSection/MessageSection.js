@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MessageSection.css";
-import Message from "../message/Message";
+import Message from "../Message/Message";
 
 function MessageSection({ userClick, user, sendMsg, messages }) {
   const [msg, setMsg] = useState("");
@@ -28,7 +28,7 @@ function MessageSection({ userClick, user, sendMsg, messages }) {
           <p>{userClick ? userClick.user_name : "user name"}</p>
         </div>
       </div>
-      <Message messages={messages} />
+      <Message messages={messages}  userClick ={userClick}   user={user} />
 
       <div className="message-input-section">
         <input

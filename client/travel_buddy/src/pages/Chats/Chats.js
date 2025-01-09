@@ -59,9 +59,9 @@ function Chats() {
     }
 
     return () => {
-      socket.close();
+      socket?.close();
     };
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     const token = localStorage.getItem("travel_buddy_token");

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Message = React.memo(({messages}) => {
+const Message = React.memo(({messages,userClick, user}) => {
   return (
     <div className="message-container">
       {messages?.map((msg, index) => {
