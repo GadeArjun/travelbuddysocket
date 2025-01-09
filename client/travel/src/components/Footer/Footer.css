@@ -1,0 +1,43 @@
+.footer {
+    background-color: #e1dede;
+    color: black;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer__section {
+    margin: 10px 0;
+}
+
+.footer__title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #f34f41;
+}
+
+.footer__description {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.footer__bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgb(7 72 137);
+}
+
+@media screen and (max-width: 768px) {
+    .footer__content {
+        text-align: center;
+    }
+
+    .footer__section {
+        margin: 20px 0;
+    }
+}

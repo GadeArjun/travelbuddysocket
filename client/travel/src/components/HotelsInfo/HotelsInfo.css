@@ -1,0 +1,82 @@
+.hotel-info-heading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+
+}
+
+.hotel-info-heading h1 {
+    font-size: 2.5rem;
+    color: orangered;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.card a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.na {
+    color: orangered;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 15px;
+    }
+
+    .card h2 {
+        font-size: 1.25rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+}
