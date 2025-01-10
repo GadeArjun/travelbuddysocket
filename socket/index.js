@@ -41,12 +41,17 @@ io.on("connection", (socket) => {
     console.log({sender: msg});
     
 
-    const response = await axios.post(`${process.env.SERVER_URL}/message`, {
+    try{
+        const response = await axios.post(`${process.env.SERVER_URL}/message`, {
       sender: msg.sender,
       receiver: msg.receiver,
       message: msg.msg,
     });
     console.log(response.data);
+    }
+  catch(err){
+    console.log({err});
+  }
 
 
     if (receiverID) {
