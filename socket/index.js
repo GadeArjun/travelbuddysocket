@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
   socket.on("msg", async (msg) => {
     const receiverID = userMap.get(msg.receiver);
-    // console.log(receiverID , "receiver id" , msg.receiver);
+    console.log(receiverID , "receiver id");
 
     console.log({msg: msg});
     
@@ -55,6 +55,7 @@ io.on("connection", (socket) => {
 
 
     if (receiverID) {
+      console.log("go in if");
       socket.to(receiverID).emit("msg", msg);
       console.log("message send");
     }
