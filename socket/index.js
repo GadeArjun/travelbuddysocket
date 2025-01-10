@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
     const receiverID = userMap.get(msg.receiver);
     console.log(receiverID , "receiver id" , msg);
 
-    
+      console.log("User map:", Array.from(userMap.entries()));
 
   //   try{
   //       const response = await axios.post(`${process.env.SERVER_URL}/message`, {
@@ -60,7 +60,7 @@ io.on("connection", (socket) => {
       console.log("message send");
     }
 
-    // console.log("User map:", Array.from(userMap.entries()));
+  
   });
 
   socket.on("disconnect", () => {
