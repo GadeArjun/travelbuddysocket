@@ -2,7 +2,7 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken")
-const axios = require("axios");
+// const axios = require("axios");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -38,24 +38,25 @@ io.on("connection", (socket) => {
     const receiverID = userMap.get(msg.receiver);
     // console.log(receiverID , "receiver id" , msg.receiver);
 
-    console.log({sender: msg});
+    console.log({msg: msg});
     
 
-    try{
-        const response = await axios.post(`${process.env.SERVER_URL}/message`, {
-      sender: msg.sender,
-      receiver: msg.receiver,
-      message: msg.msg,
-    });
-    console.log(response.data);
-    }
-  catch(err){
-    console.log({err});
-  }
+  //   try{
+  //       const response = await axios.post(`${process.env.SERVER_URL}/message`, {
+  //     sender: msg.sender,
+  //     receiver: msg.receiver,
+  //     message: msg.msg,
+  //   });
+  //   console.log(response.data);
+  //   }
+  // catch(err){
+  //   console.log({err});
+  // }
 
 
     if (receiverID) {
       socket.to(receiverID).emit("msg", msg);
+      console.log("message send");
     }
 
     // console.log("User map:", Array.from(userMap.entries()));
