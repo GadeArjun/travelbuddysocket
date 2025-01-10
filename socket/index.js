@@ -34,11 +34,10 @@ io.on("connection", (socket) => {
     socket.emit("user_email", user_email);
   });
 
-  socket.on("msg", async (msg) => {
+  socket.on("msg", (msg) => {
     const receiverID = userMap.get(msg.receiver);
-    console.log(receiverID , "receiver id");
+    console.log(receiverID , "receiver id" , msg);
 
-    console.log({msg: msg});
     
 
   //   try{
@@ -53,6 +52,7 @@ io.on("connection", (socket) => {
   //   console.log({err});
   // }
 
+    console.log({msg: msg});
 
     if (receiverID) {
       console.log("go in if");
